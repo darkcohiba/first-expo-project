@@ -8,3 +8,10 @@ To start program:
 1. ```console
     $ npm install
     ```
+3. ```console
+    $ npm run start
+    ```
+1. To open in the IOS:
+    ```console
+    $ i
+    ```
