@@ -5,10 +5,12 @@ Packages to install
 
 
 To start program:
-1. ```console
+1. To install scripts and dependecies:
+    ```console
     $ npm install
     ```
-3. ```console
+3. To run expo:
+    ```console
     $ npm run start
     ```
 1. To open in the IOS:
