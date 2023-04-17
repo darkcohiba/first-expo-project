@@ -30,17 +30,17 @@ const Homepage = () => {
             >
                 <Categories />
                 <FeaturedRow
-                    id="123"
+                    id="1"
                     title="Featured"
                     description="Paid placements from our partners"
                 />
                 <FeaturedRow
-                    id="1234" 
+                    id="2" 
                     title="Tasty Discounts"
                     description="Evryone's been enjoying these juicy discounts!"
                 />
                 <FeaturedRow
-                    id="12345"
+                    id="3"
                     title="Offers near you"
                     description="Why not support your local restaurant!"
                 />
