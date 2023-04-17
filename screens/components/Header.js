@@ -9,7 +9,7 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <View className="flex-row pb-3 mx-4 space-x-2 items-center px-4">
+    <View className="flex-row pb-3 mx-4 space-x-2 items-center">
       <Image 
       source={{ 
           uri: 'https://links.papareact.com/wru'
