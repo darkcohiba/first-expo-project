@@ -10,11 +10,11 @@ To start program:
     ```console
     $ npm install
     ```
-3. To run expo:
+2. To run expo:
     ```console
     $ npm run start
     ```
-1. To open in the IOS:
+3. To open in the IOS:
     ```console
     $ i
     ```
