@@ -1,13 +1,13 @@
 // schemas/featured.js
 export default {
-    name: 'dish',
+    name: 'featured',
     type: 'document',
-    title: 'Dish',
+    title: 'Featured Menu categories',
     fields: [
       {
         name: 'name',
         type: 'string',
-        title: 'Name of dish',
+        title: 'Featured Category dish',
         validation: (Rule) => Rule.required()
       },
       {
@@ -17,15 +17,10 @@ export default {
         validation: (Rule) => Rule.max(200)
       },
       {
-        name: 'price',
-        type: 'number',
-        title: 'Price of the dish in USD',
-        validation: (Rule) => Rule.max(200)
-      },
-      {
-        name: 'image',
-        type: 'image',
-        title: 'Image of the dish',
+        name: 'restaurants',
+        type: 'array',
+        title: 'Restaurants',
+        of: [{type: "reference", to: [{ type: 'restaurant'}] }] 
       }
     ]
   }
