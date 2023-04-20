@@ -2,27 +2,33 @@
 export default {
     name: 'restaurant',
     type: 'document',
-    title: 'Restaurants',
+    title: 'Restaurant',
     fields: [
       {
-        name: 'title',
+        name: 'name',
         type: 'string',
-        title: 'Title'
+        title: 'Restaurant name',
+        validation: (Rule) => Rule.required()
       },
       {
-        name: 'imgUrl',
-        type: 'url',
-        title: 'imgUrl'
+        name: 'image',
+        type: 'image',
+        title: 'Image of the Restaurant'
       },
       {
         name: 'rating',
         type: 'number',
-        title: 'Rating'
+        title: 'Rating',
+        validation: (Rule) => Rule.required()
+            .min(1)
+            .max(5)
+            .error("Please enter a number between 1 and 5")
       },
       {
         name: 'address',
         type: 'string',
-        title: 'Address'
+        title: 'Address',
+        validation: (Rule) => Rule.required()
       },
       {
         name: 'genre',
@@ -30,25 +36,20 @@ export default {
         title: 'Genre'
       },
       {
-        name: 'shortDescription',
-        type: 'string',
-        title: 'Short Description'
+        name: 'lat',
+        type: 'number',
+        title: 'Latitude of the Restaurant'
       },
       {
-        name: 'dishes',
-        type: 'array',
-        title: 'Dishes',
-        of: [
-            {
-              type: "object",
-              name: "dish",
-              fields: [
-                { type: "string", name: "title" },
-                { type: "number", name: "price" },
-                { type: "string", name: "description"}
-              ]
-            }
-          ],
+        name: 'long',
+        type: 'number',
+        title: 'Longitude of the Restaurant'
+      },
+      {
+        name: 'short_description',
+        type: 'string',
+        title: 'Short Description',
+        validation: (Rule)=> Rule.max(200)
       }
     ]
-  }
+}
