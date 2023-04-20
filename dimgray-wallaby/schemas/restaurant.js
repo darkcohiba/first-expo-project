@@ -50,6 +50,19 @@ export default {
         type: 'string',
         title: 'Short Description',
         validation: (Rule)=> Rule.max(200)
+      },
+      {
+        name: 'type',
+        type: 'reference',
+        title: 'Category',
+        to: [{type: 'category'}],
+        validation: (Rule)=> Rule.required()
+      },
+      {
+        name: 'dishes',
+        type: 'array',
+        title: 'Dishes',
+        of: [{type: 'reference', to: [{ type: "dish"}] }],
       }
     ]
 }
