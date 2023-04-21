@@ -14,10 +14,10 @@ const Homepage = () => {
         navigation.setOptions({
             headerShown: false
             // headerTitle: 'Sam',
-            
         })
     },[])
 
+    
     return (
         <SafeAreaView className="bg-white pt-5">
             <Header />
