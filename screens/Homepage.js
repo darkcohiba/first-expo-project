@@ -1,20 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import {SafeAreaView, ScrollView, Text, View } from 'react-native';
-import React, { useLayoutEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import Header from './components/Header';
 import Search from './components/Search';
 import Categories from './components/Categories';
 import FeaturedRow from './components/FeaturedRow';
+import {client} from '../sanity';
+
 
 const Homepage = () => {
     const navigation = useNavigation()
+    const [featured, setFeatured] = useState([])
 
     useLayoutEffect(()=>{
         navigation.setOptions({
             headerShown: false
             // headerTitle: 'Sam',
         })
+    },[])
+    const hello = {
+        "sam": "Sam",
+        "name": "Sam",
+        "average": 0
+    }
+    async function getFeatured() {
+        const featured = await client.fetch(`
+        *[_type == 'featured']{
+            ...,
+            restaurants[]->{
+              ...,
+              dishes[]->
+            }
+          }
+        `)
+        return featured
+    }
+
+    useEffect(()=>{
+        console.log(getFeatured())
+        
+        console.log(hello)
     },[])
 
     
