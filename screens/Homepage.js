@@ -7,6 +7,9 @@ import Search from './components/Search';
 import Categories from './components/Categories';
 import FeaturedRow from './components/FeaturedRow';
 import {client} from '../sanity';
+import 'react-native-url-polyfill/auto';
+
+
 
 
 const Homepage = () => {
@@ -34,10 +37,25 @@ const Homepage = () => {
     }
 
     useEffect(()=>{
-        getFeatured().then(data=> console.log(data))
-        
+        getFeatured().then(data=> setFeatured(data))
+        // client.fetch(`
+        // *[_type == 'featured']{
+        //     ...,
+        //     restaurants[]->{
+        //       ...,
+        //       dishes[]->
+        //     }
+        //   }
+        // `).then(data => console.log(data))
     },[])
-
+    const featuredRows = featured.map(feature => (
+        <FeaturedRow
+            key={feature._id}
+            id={feature._id}
+            title={feature.name}
+            description={feature.short_description}
+        />
+    ))
     
     return (
         <SafeAreaView className="bg-white pt-5">
@@ -50,7 +68,9 @@ const Homepage = () => {
                 }}
             >
                 <Categories />
-                <FeaturedRow
+                {featuredRows}
+
+                {/* <FeaturedRow
                     id="1"
                     title="Featured"
                     description="Paid placements from our partners"
@@ -64,7 +84,7 @@ const Homepage = () => {
                     id="3"
                     title="Offers near you"
                     description="Why not support your local restaurant!"
-                />
+                /> */}
             </ScrollView>
             <StatusBar style="auto" />
         </SafeAreaView>
