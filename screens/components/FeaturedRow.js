@@ -24,6 +24,7 @@ const FeaturedRow = ({ id, title, description}) => {
           }[0]
         `,{id}
         ).then(data=> setFeaturedRest(data.restaurants))
+        .catch(err=> console.error(err))
     },[])
     function returnUrl(image){
         let url = urlFor(image).url().toString()
@@ -34,8 +35,9 @@ const FeaturedRow = ({ id, title, description}) => {
         return newUrl
     }
     console.log(returnUrl(featuredRest[0]?.image))
-    const featuredRestCards = featuredRest?.map(restaurant=> (
-        <RestaurantCard 
+    const featuredRestCards = featuredRest?.map((restaurant, idx)=> {
+        // console.log(idx)
+        return(<RestaurantCard 
             id={restaurant._id}
             imgUrl={returnUrl(restaurant.image)}
             // imgUrl="https://links.papareact.com/gn7"
@@ -48,7 +50,7 @@ const FeaturedRow = ({ id, title, description}) => {
             long={restaurant.long}
             lat={restaurant.lat}
         />
-    ))
+    )})
 
   return (
     <View>
