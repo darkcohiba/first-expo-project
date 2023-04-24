@@ -24,6 +24,11 @@ const Homepage = () => {
         "name": "Sam",
         "average": 0
     }
+    const hello = {
+        "sam": "Sam",
+        "name": "Sam",
+        "average": 0
+    }
     async function getFeatured() {
         const featured = await client.fetch(`
         *[_type == 'featured']{
