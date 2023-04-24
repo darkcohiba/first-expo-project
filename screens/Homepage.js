@@ -19,16 +19,7 @@ const Homepage = () => {
             // headerTitle: 'Sam',
         })
     },[])
-    const hello = {
-        "sam": "Sam",
-        "name": "Sam",
-        "average": 0
-    }
-    const hello = {
-        "sam": "Sam",
-        "name": "Sam",
-        "average": 0
-    }
+
     async function getFeatured() {
         const featured = await client.fetch(`
         *[_type == 'featured']{
@@ -43,9 +34,8 @@ const Homepage = () => {
     }
 
     useEffect(()=>{
-        console.log(getFeatured())
+        getFeatured().then(data=> console.log(data))
         
-        console.log(hello)
     },[])
 
     
