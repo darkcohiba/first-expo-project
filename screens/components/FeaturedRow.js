@@ -1,11 +1,51 @@
 import { View, Text, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { 
     ArrowRightIcon
 } from "react-native-heroicons/outline"
 import RestaurantCard from './RestaurantCard'
+import { client } from '../../sanity'
+import { urlFor } from '../../sanityImage'
 
-const FeaturedRow = ({title, description}) => {
+const FeaturedRow = ({ id, title, description}) => {
+    const [featuredRest, setFeaturedRest] = useState([])
+
+    useEffect(()=>{
+        client.fetch(`
+        *[_type == 'featured' && _id == $id ]{
+            ...,
+            restaurants[]->{
+              ...,
+              dishes[]->,
+              type-> {
+                name
+              }
+            },
+          }[0]
+        `,{id}
+        ).then(data=> setFeaturedRest(data.restaurants))
+    },[])
+    console.log(urlFor(featuredRest[0]?.image)
+                                        ?.auto('format')
+                                        ?.fit('max')
+                                        ?.width(720)
+                                        .toString()
+                                        )
+    const featuredRestCards = featuredRest?.map(restaurant=> (
+        <RestaurantCard 
+            id={restaurant._id}
+            imgUrl="https://links.papareact.com/gn7"
+            title={restaurant.name}
+            rating={restaurant.rating}
+            address={restaurant.address}
+            genre={restaurant.genre}
+            short_description={restaurant.short_description}
+            dishes={restaurant.dishes}
+            long={restaurant.long}
+            lat={restaurant.lat}
+        />
+    ))
+
   return (
     <View>
         <View className="mt-4 flex-row items-center justify-between px-4">
@@ -21,8 +61,8 @@ const FeaturedRow = ({title, description}) => {
             }}
             className="pt-4"
         >
-            {/* Restuarant Cards */}
-            <RestaurantCard 
+            {featuredRestCards}
+            {/* <RestaurantCard 
                 id={1}
                 imgUrl="https://links.papareact.com/gn7"
                 title="Testing 1"
@@ -57,7 +97,7 @@ const FeaturedRow = ({title, description}) => {
                 dishes={[]}
                 long={20}
                 lat={0}
-            />
+            /> */}
         </ScrollView>
     </View>
   )

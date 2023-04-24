@@ -48,7 +48,7 @@ const Homepage = () => {
         //   }
         // `).then(data => console.log(data))
     },[])
-    const featuredRows = featured.map(feature => (
+    const featuredRows = featured?.map(feature => (
         <FeaturedRow
             key={feature._id}
             id={feature._id}
@@ -110,14 +110,6 @@ const Homepage = () => {
     //     opacity: 10,
     //   }
     // });
-
-
-    // <View className="items-center bg-red-800 border-black border-4 rounded-md h-3/4">
-    //         <View className="bg-black rounded-md m-2">
-    //             <Text className="text-red-400 text-center w-3/4  m-4">Weeee!</Text>
-    //         </View>
-    //         <Text className="text-center text-purple-800 bg-green-400 w-1/2">WOW</Text>
-    //         </View>
 
 
 export default Homepage;
