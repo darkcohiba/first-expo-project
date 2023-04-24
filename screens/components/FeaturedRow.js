@@ -30,6 +30,7 @@ const FeaturedRow = ({ id, title, description}) => {
         let replacement = ["31ql7cwb", "production"]
         let newUrl = url.replace("undefined", replacement[0])
         newUrl = newUrl.replace("undefined", replacement[1])
+        console.log(newUrl)
         return newUrl
     }
     console.log(returnUrl(featuredRest[0]?.image))
@@ -37,6 +38,7 @@ const FeaturedRow = ({ id, title, description}) => {
         <RestaurantCard 
             id={restaurant._id}
             imgUrl={returnUrl(restaurant.image)}
+            // imgUrl="https://links.papareact.com/gn7"
             title={restaurant.name}
             rating={restaurant.rating}
             address={restaurant.address}
